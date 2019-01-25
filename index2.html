@@ -1,0 +1,134 @@
+<html>
+
+<head>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart','bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawChart() {
+
+        var xWork = 8;
+        var xEat = 3;
+        var xCommute = 4;
+        var xWatchTV = 2;
+        var xSleep = 10;
+
+        var piedata = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work', xWork],
+          ['Eat', xEat],
+          ['Commute', xCommute],
+          ['Watch TV', xWork],
+          ['Sleep', xSleep]
+        ]);
+
+        var pieoptions = {
+          title: 'My Daily Activities',
+          backgroundColor:{fill:'red',stroke:'#000000',strokeWidth:2},
+          reverseCategories:'true',
+          pieResidueSliceColor:'#FFF000',
+          tooltip:{ignoreBounds:'true'}
+          //tooltip:{textStyle:{color:'#FF0000'},showColorCode:true}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(piedata, pieoptions);
+      }
+
+      function drawStuff() {
+
+        var chartDiv = document.getElementById('chart_div');
+
+        var data = google.visualization.arrayToDataTable([
+          ['Galaxy', 'Distance', 'Brightness','size'],
+          ['Canis Major Dwarf', 8000, 23.3,20],
+          ['Sagittarius Dwarf', 24000, 4.5,15],
+          ['Ursa Major II Dwarf', 30000, 14.3,12],
+          ['Lg. Magellanic Cloud', 50000, 0.9,11],
+          ['Bootes I', 60000, 13.1,14]
+        ]);
+
+        var a = 'Distance';
+        var b = 'Brightness';
+        var c = 'Size';
+        var materialOptions = {
+
+          width: 900,
+          chart: {
+            title: 'Nearby galaxies',
+            subtitle: 'distance on the left, brightness on the right'
+          },
+          series: {
+            0: { axis: a }, // Bind series 0 to an axis named 'distance'.
+            1: { axis: b }, // Bind series 1 to an axis named 'brightness'.
+            2: { axis: c }
+          },
+          axes: {
+            y: {
+              distance: {label: 'parsecs'}, // Left y-axis.
+              brightness: {side: 'right', label: 'apparent magnitude'} // Right y-axis. 
+            }
+          }
+
+        };
+
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Bar(chartDiv);
+          materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
+        }
+
+        drawMaterialChart();
+      };
+
+
+
+
+    </script>
+
+<title></title>
+
+<style type="text/css">
+.grades {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.desktopGrades {
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
+  width: 50%;
+  height: 50%;
+}
+.desktopGrades h1 {
+  border: 1px solid #ccc;
+}
+</style>
+
+</head>
+<body>
+
+<div class="grades">
+  <div>
+      <div class="desktopGrades desktopGrade2" id="piechart">
+          <h1>Daily Activities</h1> 
+      </div>
+      <div class="desktopGrades desktopGrades2" id="chart_div">
+
+      </div>
+  </div>
+  <div class="desktopGrades desktopGrades3">
+    <h1>Maths</h1>
+  </div>
+ <!--  <div class="desktopGrades desktopGrades4">
+    <h1>Maths</h1>
+  </div> -->
+</div>
+
+</body>
+</html>  
